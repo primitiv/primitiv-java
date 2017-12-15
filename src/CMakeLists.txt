@@ -1,12 +1,15 @@
 set(primitiv_java_SRCS
+  primitiv_Parameter.cc
   primitiv_Shape.cc
 )
 
 set(primitiv_java_CLASSLIST
+  primitiv.Parameter
   primitiv.Shape
 )
 
 add_jar(primitiv_java_JAR
+  primitiv/Parameter.java
   primitiv/Shape.java
   OUTPUT_NAME primitiv
 )

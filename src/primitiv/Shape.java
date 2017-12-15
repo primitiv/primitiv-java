@@ -4,10 +4,6 @@ public class Shape
 {
   private long ptr_ = 0;
 
-  static {
-    System.loadLibrary("primitiv_java");
-  }
-
   public Shape() {
     ptr_ = jniNew();
   }
@@ -160,4 +156,7 @@ public class Shape
 
   private native void jniUpdateBatch(long shape, int batch);
 
+  static {
+    NativeLibrary.load();
+  }
 }

@@ -2,24 +2,25 @@
 #include <iostream>
 #include "primitiv_Shape.h"
 
+#include "internal.h"
+
 namespace primitiv {
 
 extern "C" {
 
 #define AS_SHAPE_PTR(x) (reinterpret_cast<Shape *>(x))
 #define AS_SHAPE(x) (*reinterpret_cast<Shape *>(x))
-#define AS_LONG(x) (reinterpret_cast<jlong>(x))
 
 JNIEXPORT jlong JNICALL Java_primitiv_Shape_jniNew(JNIEnv *env, jobject thisj) {
   Shape *shape = new Shape();
-  return AS_LONG(shape);
+  return to_j(shape);
 }
 
 JNIEXPORT jlong JNICALL Java_primitiv_Shape_jniNewWithDims(JNIEnv *env, jobject thisj, jintArray dims, jint n, jint batch) {
   const uint32_t *dims_arr = reinterpret_cast<uint32_t *>(env->GetIntArrayElements(dims, 0));
   std::vector<uint32_t> v(dims_arr, dims_arr + n);
   Shape *shape = new Shape(v, batch);
-  return AS_LONG(shape);
+  return to_j(shape);
 }
 
 JNIEXPORT void JNICALL Java_primitiv_Shape_jniDelete(JNIEnv *env, jobject thisj, jlong shape) {
@@ -103,11 +104,11 @@ JNIEXPORT jboolean JNICALL Java_primitiv_Shape_jniHasSameLooDims(JNIEnv *env, jo
 }
 
 JNIEXPORT jlong JNICALL Java_primitiv_Shape_jniResizeDim(JNIEnv *env, jobject thisj, jlong shape, jint dim, jint m) {
-  return AS_LONG(new Shape(AS_SHAPE(shape).resize_dim(dim, m)));
+  return to_j(new Shape(AS_SHAPE(shape).resize_dim(dim, m)));
 }
 
 JNIEXPORT jlong JNICALL Java_primitiv_Shape_jniResizeBatch(JNIEnv *env, jobject thisj, jlong shape, jint batch) {
-  return AS_LONG(new Shape(AS_SHAPE(shape).resize_batch(batch)));
+  return to_j(new Shape(AS_SHAPE(shape).resize_batch(batch)));
 }
 
 JNIEXPORT void JNICALL Java_primitiv_Shape_jniUpdateDim(JNIEnv *env, jobject thisj, jlong shape, jint dim, jint m) {
