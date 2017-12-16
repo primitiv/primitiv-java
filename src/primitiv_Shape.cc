@@ -1,10 +1,15 @@
 #include "primitiv_Shape.h"
 
+#include <memory>
+
+#include <jni.h>
 #include <primitiv/shape.h>
 
 #include "internal.h"
 
 namespace primitiv {
+
+namespace jni {
 
 extern "C" {
 
@@ -17,11 +22,9 @@ JNIEXPORT jlong JNICALL Java_primitiv_Shape_jniNew(JNIEnv *env, jobject thisj) {
 }
 
 JNIEXPORT jlong JNICALL Java_primitiv_Shape_jniNewWithDims(JNIEnv *env, jobject thisj, jintArray dims, jint n, jint batch) {
-  const jint *dims_arr = env->GetIntArrayElements(dims, 0);
-  const uint32_t *dims_uint_arr = reinterpret_cast<uint32_t *>(dims_arr);
-  std::vector<uint32_t> dims_vec(dims_uint_arr, dims_uint_arr + n);
+  JNIIntArrayAccess dims_access(env, dims);
+  std::vector<uint32_t> dims_vec = dims_access.get_vector_unsigned();
   Shape *shape = new Shape(dims_vec, batch);
-  env->ReleaseIntArrayElements(dims, dims_arr, 0);
   return to_j(shape);
 }
 
@@ -123,4 +126,6 @@ JNIEXPORT void JNICALL Java_primitiv_Shape_jniUpdateBatch(JNIEnv *env, jobject t
 
 }
 
-}
+}  // namespace jni
+
+}  // namespace primitiv

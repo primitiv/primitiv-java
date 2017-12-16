@@ -20,15 +20,15 @@ create_javah(TARGET primitiv_java_javah
   CLASSPATH primitiv_java_JAR
 )
 
-add_library(primitiv_java_all_OBJS OBJECT
+add_library(primitiv_jni_all_OBJS OBJECT
   ${primitiv_java_HDRS}
   ${primitiv_java_SRCS})
-add_dependencies(primitiv_java_all_OBJS primitiv_java_javah)
-set(primitiv_java_all_OBJS $<TARGET_OBJECTS:primitiv_java_all_OBJS>)
-set(primitiv_java_all_DEPS)
+add_dependencies(primitiv_jni_all_OBJS primitiv_java_javah)
+set(primitiv_jni_all_OBJS $<TARGET_OBJECTS:primitiv_jni_all_OBJS>)
+set(primitiv_jni_all_DEPS)
 
-list(APPEND primitiv_java_all_DEPS
+list(APPEND primitiv_jni_all_DEPS
     ${PRIMITIV_LIBRARIES})
 
-add_library(primitiv_jni SHARED ${primitiv_java_all_OBJS})
-target_link_libraries(primitiv_jni ${primitiv_java_all_DEPS})
+add_library(primitiv_jni SHARED ${primitiv_jni_all_OBJS})
+target_link_libraries(primitiv_jni ${primitiv_jni_all_DEPS})

@@ -21,7 +21,7 @@ final class NativeLibrary {
 
   private static void log(String message) {
     if (DEBUG) {
-      System.err.println("org.tensorflow.NativeLibrary: " + message);
+      System.err.println("primitiv.NativeLibrary: " + message);
     }
   }
 

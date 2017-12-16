@@ -6,7 +6,9 @@
 
 #include "internal.h"
 
-using primitiv::Parameter;
+namespace primitiv {
+
+namespace jni {
 
 #define CAST_TO_PARAMETER(x) reinterpret_cast<Parameter*>(x)
 #define CAST_TO_CONST_PARAMETER(x) reinterpret_cast<const Parameter*>(x)
@@ -27,3 +29,7 @@ JNIEXPORT void JNICALL Java_primitiv_Parameter_save(JNIEnv * env, jobject thisj,
 }
 
 }  // end extern "C"
+
+}  // namespace jni
+
+}  // namespace primitiv
