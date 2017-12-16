@@ -30,5 +30,5 @@ set(primitiv_java_all_DEPS)
 list(APPEND primitiv_java_all_DEPS
     ${PRIMITIV_LIBRARIES})
 
-add_library(primitiv_java SHARED ${primitiv_java_all_OBJS})
-target_link_libraries(primitiv_java ${primitiv_java_all_DEPS})
+add_library(primitiv_jni SHARED ${primitiv_java_all_OBJS})
+target_link_libraries(primitiv_jni ${primitiv_java_all_DEPS})

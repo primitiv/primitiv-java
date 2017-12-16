@@ -1,6 +1,6 @@
-#include <primitiv/shape.h>
-#include <iostream>
 #include "primitiv_Shape.h"
+
+#include <primitiv/shape.h>
 
 #include "internal.h"
 
@@ -17,9 +17,11 @@ JNIEXPORT jlong JNICALL Java_primitiv_Shape_jniNew(JNIEnv *env, jobject thisj) {
 }
 
 JNIEXPORT jlong JNICALL Java_primitiv_Shape_jniNewWithDims(JNIEnv *env, jobject thisj, jintArray dims, jint n, jint batch) {
-  const uint32_t *dims_arr = reinterpret_cast<uint32_t *>(env->GetIntArrayElements(dims, 0));
-  std::vector<uint32_t> v(dims_arr, dims_arr + n);
-  Shape *shape = new Shape(v, batch);
+  const jint *dims_arr = env->GetIntArrayElements(dims, 0);
+  const uint32_t *dims_uint_arr = reinterpret_cast<uint32_t *>(dims_arr);
+  std::vector<uint32_t> dims_vec(dims_uint_arr, dims_uint_arr + n);
+  Shape *shape = new Shape(dims_vec, batch);
+  env->ReleaseIntArrayElements(dims, dims_arr, 0);
   return to_j(shape);
 }
 
