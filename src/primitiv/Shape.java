@@ -1,23 +1,29 @@
+/* Copyright 2017 The primitiv Authors. All Rights Reserved. */
+
 package primitiv;
+
+import primitiv.HandleObjectHashMap;
+import java.lang.Thread;
+
 
 public class Shape
 {
-  private long ptr_ = 0;
+  protected long handle_ = 0;
 
   public Shape() {
-    ptr_ = jniNew();
+    handle_ = jniNew();
   }
 
   public Shape(int[] dims, int batch) {
-    ptr_ = jniNewWithDims(dims, dims.length, batch);
+    handle_ = jniNewWithDims(dims, batch);
   }
 
-  private Shape(long ptr) {
-    ptr_ = ptr;
+  protected Shape(long ptr) {
+    handle_ = ptr;
   }
 
   public void dispose() {
-    jniDelete(ptr_);
+    jniDelete(handle_);
   }
 
   @Override
@@ -30,130 +36,108 @@ public class Shape
   }
 
   public int getItem(int i) {
-    return jniGetitem(ptr_, i);
+    return jniGetitem(handle_, i);
   }
 
   public int[] dims() {
-    return jniDims(ptr_);
+    return jniDims(handle_);
   }
 
   public int depth() {
-    return jniDepth(ptr_);
+    return jniDepth(handle_);
   }
 
   public int batch() {
-    return jniBatch(ptr_);
+    return jniBatch(handle_);
   }
 
   public int volume() {
-    return jniVolume(ptr_);
+    return jniVolume(handle_);
   }
 
   public int lower_volume(int dim) {
-    return jniLowerVolume(ptr_, dim);
+    return jniLowerVolume(handle_, dim);
   }
 
   public int size() {
-    return jniSize(ptr_);
+    return jniSize(handle_);
   }
 
   public String to_string() {
-    return jniToString(ptr_);
+    return jniToString(handle_);
   }
 
   public boolean equals(Shape rhs) {
-    return jniEqual(ptr_, rhs.ptr_);
+    return jniEqual(handle_, rhs.handle_);
   }
 
   public boolean has_batch() {
-    return jniHasBatch(ptr_);
+    return jniHasBatch(handle_);
   }
 
   public boolean has_compatible_batch(Shape rhs) {
-    return jniHasCompatibleBatch(ptr_, rhs.ptr_);
+    return jniHasCompatibleBatch(handle_, rhs.handle_);
   }
 
   public boolean is_scalar() {
-    return jniIsScalar(ptr_);
+    return jniIsScalar(handle_);
   }
 
   public boolean is_row_vector() {
-    return jniIsRowVector(ptr_);
+    return jniIsRowVector(handle_);
   }
 
   public boolean is_matrix() {
-    return jniIsMatrix(ptr_);
+    return jniIsMatrix(handle_);
   }
 
   public boolean has_same_dims(Shape rhs) {
-    return jniHasSameDims(ptr_, rhs.ptr_);
+    return jniHasSameDims(handle_, rhs.handle_);
   }
 
   public boolean has_same_loo_dims(Shape rhs, int dim) {
-    return jniHasSameLooDims(ptr_, rhs.ptr_, dim);
+    return jniHasSameLooDims(handle_, rhs.handle_, dim);
   }
 
   public Shape resize_dim(int dim, int m) {
-    return new Shape(jniResizeDim(ptr_, dim, m));
+    return new Shape(jniResizeDim(handle_, dim, m));
   }
 
   public Shape resize_batch(int batch) {
-    return new Shape(jniResizeBatch(ptr_, batch));
+    return new Shape(jniResizeBatch(handle_, batch));
   }
 
   public void update_dim(int dim, int m) {
-    jniUpdateDim(ptr_, dim, m);
+    jniUpdateDim(handle_, dim, m);
   }
 
   public void update_batch(int batch) {
-    jniUpdateBatch(ptr_, batch);
+    jniUpdateBatch(handle_, batch);
   }
 
   private native long jniNew();
-  private native long jniNewWithDims(int[] dims, int n, int batch);
-
+  private native long jniNewWithDims(int[] dims, int batch);
   private native void jniDelete(long shape);
-
   private native int jniGetitem(long shape, int i);
-
   private native int[] jniDims(long shape);
-
   private native int jniDepth(long shape);
-
   private native int jniBatch(long shape);
-
   private native int jniVolume(long shape);
-
   private native int jniLowerVolume(long shape, int dim);
-
   private native int jniSize(long shape);
-
   private native String jniToString(long shape);
-
   private native boolean jniEqual(long shape, long rhs);
-
   private native boolean jniNotEqual(long shape, long rhs);
-
   private native boolean jniHasBatch(long shape);
-
   private native boolean jniHasCompatibleBatch(long shape, long rhs);
-
   private native boolean jniIsScalar(long shape);
-
   private native boolean jniIsRowVector(long shape);
-
   private native boolean jniIsMatrix(long shape);
-
   private native boolean jniHasSameDims(long shape, long rhs);
-
   private native boolean jniHasSameLooDims(long shape, long rhs, int dim);
-
   private native long jniResizeDim(long shape, int dim, int m);
-
   private native long jniResizeBatch(long shape, int batch);
-
   private native void jniUpdateDim(long shape, int dim, int m);
-
   private native void jniUpdateBatch(long shape, int batch);
 
   static {

@@ -1,3 +1,5 @@
+/* Copyright 2017 The primitiv Authors. All Rights Reserved. */
+
 package primitiv;
 
 final class NativeLibrary {

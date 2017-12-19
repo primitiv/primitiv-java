@@ -1,23 +1,35 @@
 set(primitiv_java_SRCS
+  primitiv_Device.cc
+  primitiv_devices_Naive.cc
   primitiv_Parameter.cc
   primitiv_Shape.cc
 )
 
-set(primitiv_java_CLASSLIST
+set(primitiv_java_JAVA_SRCS
+  primitiv/Device.java
+  primitiv/devices/Naive.java
+  primitiv/Parameter.java
+  primitiv/Shape.java
+  primitiv/HandleObjectHashMap.java
+)
+
+set(primitiv_java_javah_CLASSLIST
+  primitiv.Device
+  primitiv.devices.Naive
   primitiv.Parameter
   primitiv.Shape
 )
 
 add_jar(primitiv_java_JAR
-  primitiv/Parameter.java
-  primitiv/Shape.java
+  ${primitiv_java_JAVA_SRCS}
   OUTPUT_NAME primitiv
 )
 
 create_javah(TARGET primitiv_java_javah
   GENERATED_FILES primitiv_java_HDRS
-  CLASSES ${primitiv_java_CLASSLIST}
+  CLASSES ${primitiv_java_javah_CLASSLIST}
   CLASSPATH primitiv_java_JAR
+  DEPENDS ${primitiv_java_JAVA_SRCS}
 )
 
 add_library(primitiv_jni_all_OBJS OBJECT
