@@ -13,11 +13,11 @@ namespace jni {
 extern "C" {
 
 JNIEXPORT void JNICALL Java_primitiv_Device_jniSetDefault(JNIEnv *env, jclass cls, jlong handle) {
-  Device::set_default(to_device(handle));
+  Device::set_default(to_object<Device>(handle));
 }
 
 JNIEXPORT void JNICALL Java_primitiv_Device_jniDelete(JNIEnv *env, jobject thisj, jlong handle) {
-  delete to_device_ptr(handle);
+  delete to_object_ptr<Device>(handle);
 }
 
 }  // end extern "C"

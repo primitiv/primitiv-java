@@ -18,8 +18,8 @@ public class Shape
     handle_ = jniNewWithDims(dims, batch);
   }
 
-  protected Shape(long ptr) {
-    handle_ = ptr;
+  protected Shape(long handle) {
+    handle_ = handle;
   }
 
   public void dispose() {

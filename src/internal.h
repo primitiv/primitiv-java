@@ -13,28 +13,14 @@ inline jlong to_jlong(void *instance) {
   return reinterpret_cast<jlong>(instance);
 }
 
-inline Parameter *to_parameter_ptr(jlong pointer) {
-  return reinterpret_cast<Parameter *>(pointer);
+template<class T>
+inline T *to_object_ptr(jlong pointer) {
+  return reinterpret_cast<T *>(pointer);
 }
 
-inline Parameter &to_parameter(jlong pointer) {
-  return *reinterpret_cast<Parameter *>(pointer);
-}
-
-inline Shape *to_shape_ptr(jlong pointer) {
-  return reinterpret_cast<Shape *>(pointer);
-}
-
-inline Shape &to_shape(jlong pointer) {
-  return *reinterpret_cast<Shape *>(pointer);
-}
-
-inline Device *to_device_ptr(jlong pointer) {
-  return reinterpret_cast<Device *>(pointer);
-}
-
-inline Device &to_device(jlong pointer) {
-  return *reinterpret_cast<Device *>(pointer);
+template<class T>
+inline T &to_object(jlong pointer) {
+  return *reinterpret_cast<T *>(pointer);
 }
 
 class JNIIntArrayAccess {

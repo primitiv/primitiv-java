@@ -91,17 +91,17 @@ public class Parameter {
     return Device.wrap_device(jniDevice(handle_));
   }
 
-//   public Tensor value() {
-//     return new Tensor(jniValue(handle_));
-//   }
-//
-//   public Tensor gradient() {
-//     return new Tensor(jniGradient(handle_));
-//   }
-//
-//   public Tensor stats(String name) {
-//     return new Tensor(jniStats(handle_, name));
-//   }
+  public Tensor value() {
+    return new Tensor(jniValue(handle_));
+  }
+
+  public Tensor gradient() {
+    return new Tensor(jniGradient(handle_));
+  }
+
+  public Tensor stats(String name) {
+    return new Tensor(jniStats(handle_, name));
+  }
 
   private native long jniNew();
   private native long jniNewWithValues(long shape, float[] value, long device);

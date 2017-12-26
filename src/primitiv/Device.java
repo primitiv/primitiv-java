@@ -7,7 +7,6 @@ public class Device
   private static HandleObjectHashMap<Device> handle_object_hashmap = new HandleObjectHashMap<Device>();
 
   protected static Device wrap_device(long handle) {
-    System.out.println(handle);
     if (handle_object_hashmap.containsKey(new Long(handle))) {
       return handle_object_hashmap.get(handle);
     }

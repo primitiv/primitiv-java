@@ -3,6 +3,7 @@ set(primitiv_java_SRCS
   primitiv_devices_Naive.cc
   primitiv_Parameter.cc
   primitiv_Shape.cc
+  primitiv_Tensor.cc
 )
 
 set(primitiv_java_JAVA_SRCS
@@ -10,6 +11,7 @@ set(primitiv_java_JAVA_SRCS
   primitiv/devices/Naive.java
   primitiv/Parameter.java
   primitiv/Shape.java
+  primitiv/Tensor.java
   primitiv/HandleObjectHashMap.java
 )
 
@@ -18,6 +20,7 @@ set(primitiv_java_javah_CLASSLIST
   primitiv.devices.Naive
   primitiv.Parameter
   primitiv.Shape
+  primitiv.Tensor
 )
 
 add_jar(primitiv_java_JAR
