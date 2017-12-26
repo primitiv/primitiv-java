@@ -1,6 +1,8 @@
 set(primitiv_java_SRCS
   primitiv_Device.cc
   primitiv_devices_Naive.cc
+  primitiv_Graph.cc
+  primitiv_Node.cc
   primitiv_Parameter.cc
   primitiv_Shape.cc
   primitiv_Tensor.cc
@@ -9,6 +11,8 @@ set(primitiv_java_SRCS
 set(primitiv_java_JAVA_SRCS
   primitiv/Device.java
   primitiv/devices/Naive.java
+  primitiv/Graph.java
+  primitiv/Node.java
   primitiv/Parameter.java
   primitiv/Shape.java
   primitiv/Tensor.java
@@ -18,6 +22,8 @@ set(primitiv_java_JAVA_SRCS
 set(primitiv_java_javah_CLASSLIST
   primitiv.Device
   primitiv.devices.Naive
+  primitiv.Graph
+  primitiv.Node
   primitiv.Parameter
   primitiv.Shape
   primitiv.Tensor

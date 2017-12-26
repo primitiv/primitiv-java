@@ -24,18 +24,15 @@ public class Device
   }
 
   protected long handle_;
-  protected boolean del_required_;
 
   protected Device() {}
 
-  protected Device(long handle) {
+  private Device(long handle) {
     handle_ = handle;
   }
 
   public void dispose() {
-    if (del_required_) {
-      jniDelete(handle_);
-    }
+    jniDelete(handle_);
   }
 
   @Override

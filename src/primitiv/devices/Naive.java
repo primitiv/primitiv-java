@@ -9,7 +9,6 @@ public class Naive extends Device
   public Naive() {
     handle_ = jniNew();
     Device.register_wrapper(handle_, this);
-    del_required_ = true;
   }
 
   protected Naive(long handle) {

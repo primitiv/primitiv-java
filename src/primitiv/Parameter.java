@@ -5,7 +5,7 @@ package primitiv;
 public class Parameter {
   private static HandleObjectHashMap<Parameter> handle_object_hashmap = new HandleObjectHashMap<Parameter>();
 
-  protected static Parameter get_parameter(long handle) {
+  protected static Parameter wrap_parameter(long handle) {
     if (handle_object_hashmap.containsKey(new Long(handle))) {
       return handle_object_hashmap.get(handle);
     }
@@ -92,15 +92,15 @@ public class Parameter {
   }
 
   public Tensor value() {
-    return new Tensor(jniValue(handle_));
+    return Tensor.wrap_tensor(jniValue(handle_));
   }
 
   public Tensor gradient() {
-    return new Tensor(jniGradient(handle_));
+    return Tensor.wrap_tensor(jniGradient(handle_));
   }
 
   public Tensor stats(String name) {
-    return new Tensor(jniStats(handle_, name));
+    return Tensor.wrap_tensor(jniStats(handle_, name));
   }
 
   private native long jniNew();
