@@ -1,18 +1,18 @@
 set(primitiv_java_SRCS
-  primitiv_Device.cc
-  primitiv_devices_Naive.cc
-  primitiv_Initializer.cc
-  primitiv_initializers_Constant.cc
-  primitiv_initializers_Identity.cc
-  primitiv_initializers_Normal.cc
-  primitiv_initializers_Uniform.cc
-  primitiv_initializers_XavierNormal.cc
-  primitiv_initializers_XavierUniform.cc
-  primitiv_Graph.cc
-  primitiv_Node.cc
-  primitiv_Parameter.cc
-  primitiv_Shape.cc
-  primitiv_Tensor.cc
+  cpp/Device.cc
+  cpp/devices/Naive.cc
+  cpp/Initializer.cc
+  cpp/initializers/Constant.cc
+  cpp/initializers/Identity.cc
+  cpp/initializers/Normal.cc
+  cpp/initializers/Uniform.cc
+  cpp/initializers/XavierNormal.cc
+  cpp/initializers/XavierUniform.cc
+  cpp/Graph.cc
+  cpp/Node.cc
+  cpp/Parameter.cc
+  cpp/Shape.cc
+  cpp/Tensor.cc
 )
 
 set(primitiv_java_JAVA_SRCS

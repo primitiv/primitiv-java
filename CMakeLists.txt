@@ -20,7 +20,7 @@ find_package(JNI REQUIRED)
 
 include_directories(
   ${JNI_INCLUDE_DIRS}
-  ${PROJECT_SOURCE_DIR}/src
+  ${PROJECT_SOURCE_DIR}/src/cpp
   ${PROJECT_BINARY_DIR}/src)
 
 include(UseJava)
