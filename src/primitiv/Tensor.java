@@ -33,6 +33,7 @@ public class Tensor
 
   public Tensor() {
     handle_ = jniNew();
+    register_wrapper(handle_, this);
     del_required_ = true;
   }
 

@@ -27,10 +27,10 @@ public class Parameter {
     del_required_ = true;
   }
 
-//   public Parameter(Shape shape, Initializer initializer, Device device) {
-//     handle_ = jniNewWithInitializer(shape.handle_, initializer.handle_, device.handle_);
-//     del_required_ = true;
-//   }
+  public Parameter(Shape shape, Initializer initializer, Device device) {
+    handle_ = jniNewWithInitializer(shape.handle_, initializer.handle_, device.handle_);
+    del_required_ = true;
+  }
 
   protected Parameter(long handle) {
     handle_ = handle;
@@ -55,9 +55,9 @@ public class Parameter {
     jniInitWithValues(handle_, shape.handle_, value, device.handle_);
   }
 
-//   public void init(Shape shape, Initializer initializer, Device device) {
-//     jniInitWithInitializer(handle_, shape.handle_, initializer.handle_, device.handle_);
-//   }
+  public void init(Shape shape, Initializer initializer, Device device) {
+    jniInitWithInitializer(handle_, shape.handle_, initializer.handle_, device.handle_);
+  }
 
   public void load(String path, boolean with_stats, Device device) {
     jniLoad(handle_, path, with_stats, device.handle_);

@@ -22,9 +22,9 @@ JNIEXPORT jlong JNICALL Java_primitiv_Parameter_jniNewWithValues(JNIEnv *env, jo
   return to_jlong(new Parameter(to_object<Shape>(shape), value_vec, to_object_ptr<Device>(device)));
 }
 
-// JNIEXPORT jlong JNICALL Java_primitiv_Parameter_jniNewWithInitializer(JNIEnv *env, jobject thisj, jlong shape, jlong initializer, jlong device) {
-//
-// }
+JNIEXPORT jlong JNICALL Java_primitiv_Parameter_jniNewWithInitializer(JNIEnv *env, jobject thisj, jlong shape, jlong initializer, jlong device) {
+  return to_jlong(new Parameter(to_object<Shape>(shape), to_object<Initializer>(initializer), to_object_ptr<Device>(device)));
+}
 
 JNIEXPORT void JNICALL Java_primitiv_Parameter_jniDelete(JNIEnv *env, jobject thisj, jlong handle) {
   delete to_object_ptr<Parameter>(handle);
@@ -36,7 +36,9 @@ JNIEXPORT void JNICALL Java_primitiv_Parameter_jniInitWithValues(JNIEnv *env, jo
   to_object<Parameter>(handle).init(to_object<Shape>(shape), value_vec, to_object_ptr<Device>(device));
 }
 
-// JNIEXPORT void JNICALL Java_primitiv_Parameter_jniInitWithInitializer(JNIEnv *env, jobject thisj, jlong handle, jlong shape, jlong initializer, jlong device);
+JNIEXPORT void JNICALL Java_primitiv_Parameter_jniInitWithInitializer(JNIEnv *env, jobject thisj, jlong handle, jlong shape, jlong initializer, jlong device) {
+  to_object<Parameter>(handle).init(to_object<Shape>(shape), to_object<Initializer>(initializer), to_object_ptr<Device>(device));
+}
 
 JNIEXPORT void JNICALL Java_primitiv_Parameter_jniLoad(JNIEnv *env, jobject thisj, jlong handle, jstring path, jboolean with_stats, jlong device) {
   JNIStringAccess path_access(env, path);

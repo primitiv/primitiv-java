@@ -18,6 +18,10 @@ public class Shape
     handle_ = jniNewWithDims(dims, batch);
   }
 
+  public Shape(int[] dims) {
+    handle_ = jniNewWithDims(dims, 1);
+  }
+
   protected Shape(long handle) {
     handle_ = handle;
   }
