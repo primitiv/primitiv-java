@@ -74,10 +74,12 @@ set(primitiv_java_javah_CLASSLIST
   primitiv.Tensor
 )
 
+set(CMAKE_JNI_TARGET TRUE)
 add_jar(primitiv_java_JAR
   ${primitiv_java_JAVA_SRCS}
   OUTPUT_NAME primitiv
 )
+install_jar(primitiv_java_JAR share/java)
 
 create_javah(TARGET primitiv_java_javah
   GENERATED_FILES primitiv_java_HDRS
@@ -98,3 +100,5 @@ list(APPEND primitiv_jni_all_DEPS
 
 add_library(primitiv_jni SHARED ${primitiv_jni_all_OBJS})
 target_link_libraries(primitiv_jni ${primitiv_jni_all_DEPS})
+
+install(TARGETS primitiv_jni DESTINATION lib)
