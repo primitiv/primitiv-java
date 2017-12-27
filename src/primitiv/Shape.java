@@ -2,8 +2,7 @@
 
 package primitiv;
 
-import primitiv.HandleObjectHashMap;
-import java.lang.Thread;
+import java.util.List;
 
 
 public class Shape
@@ -18,8 +17,18 @@ public class Shape
     handle_ = jniNewWithDims(dims, batch);
   }
 
+  public Shape(List<Number> dims, int batch) {
+    int[] dims_arr = dims.stream().mapToInt(i -> i.intValue()).toArray();
+    handle_ = jniNewWithDims(dims_arr, batch);
+  }
+
   public Shape(int[] dims) {
     handle_ = jniNewWithDims(dims, 1);
+  }
+
+  public Shape(List<Number> dims) {
+    int[] dims_arr = dims.stream().mapToInt(i -> i.intValue()).toArray();
+    handle_ = jniNewWithDims(dims_arr, 1);
   }
 
   protected Shape(long handle) {

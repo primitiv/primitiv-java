@@ -2,6 +2,9 @@
 
 package primitiv;
 
+import java.util.List;
+
+
 public abstract class Optimizer {
   protected long handle_;
 
@@ -65,6 +68,12 @@ public abstract class Optimizer {
   public void add() {}
 
   public void add(Parameter... params) {
+    for (Parameter param : params) {
+      jniAdd(handle_, param.handle_);
+    }
+  }
+
+  public void add(List<Parameter> params) {
     for (Parameter param : params) {
       jniAdd(handle_, param.handle_);
     }

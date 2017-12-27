@@ -2,6 +2,9 @@
 
 package primitiv;
 
+import java.util.List;
+
+
 public final class functions {
 
   private functions() {}
@@ -78,12 +81,36 @@ public final class functions {
     return new Node(jniInput(shape.handle_, data, dev.handle_, g.handle_));
   }
 
+  public static Node input(Shape shape, List<Number> data, Device dev, Graph g) {
+    float[] data_arr = new float[data.size()];
+    for (int i = 0; i < data_arr.length; ++i) {
+      data_arr[i] = data.get(i).floatValue();
+    }
+    return new Node(jniInput(shape.handle_, data_arr, dev.handle_, g.handle_));
+  }
+
   public static Node input(Shape shape, float[] data, Device dev) {
     return new Node(jniInput(shape.handle_, data, dev.handle_, 0));
   }
 
+  public static Node input(Shape shape, List<Number> data, Device dev) {
+    float[] data_arr = new float[data.size()];
+    for (int i = 0; i < data_arr.length; ++i) {
+      data_arr[i] = data.get(i).floatValue();
+    }
+    return new Node(jniInput(shape.handle_, data_arr, dev.handle_, 0));
+  }
+
   public static Node input(Shape shape, float[] data) {
     return new Node(jniInput(shape.handle_, data, 0, 0));
+  }
+
+  public static Node input(Shape shape, List<Number> data) {
+    float[] data_arr = new float[data.size()];
+    for (int i = 0; i < data_arr.length; ++i) {
+      data_arr[i] = data.get(i).floatValue();
+    }
+    return new Node(jniInput(shape.handle_, data_arr, 0, 0));
   }
 
   public static Node parameter(Parameter param, Graph g) {
