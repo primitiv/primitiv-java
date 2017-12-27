@@ -45,8 +45,8 @@ public:
     return v;
   }
   std::vector<uint32_t> get_vector_unsigned() {
-    std::vector<uint32_t> v(reinterpret_cast<uint32_t*>(array_ptr_),
-                            reinterpret_cast<uint32_t*>(array_ptr_) + size_);
+    std::vector<jint> v_old = get_vector();
+    std::vector<uint32_t> v(v_old.begin(), v_old.end());
     return v;
   }
 
@@ -57,6 +57,41 @@ private:
   jsize size_;
 
 };  // class JNIIntArrayAccess
+
+class JNILongArrayAccess {
+  JNILongArrayAccess() = delete;
+
+public:
+  JNILongArrayAccess(JNIEnv *env, jlongArray array)
+    : env_(env)
+    , array_(array)
+    , array_ptr_(env_->GetLongArrayElements(array_, 0))
+    , size_(env_->GetArrayLength(array_)) {
+  }
+
+  ~JNILongArrayAccess() {
+    env_->ReleaseLongArrayElements(array_, array_ptr_, 0);
+  }
+
+  jlong *data() { return array_ptr_; }
+  jsize size() { return size_; }
+  std::vector<jlong> get_vector() {
+    std::vector<jlong> v(array_ptr_, array_ptr_ + size_);
+    return v;
+  }
+  std::vector<uint64_t> get_vector_unsigned() {
+    std::vector<jlong> v_old = get_vector();
+    std::vector<uint64_t> v(v_old.begin(), v_old.end());
+    return v;
+  }
+
+private:
+  JNIEnv *env_;
+  jlongArray array_;
+  jlong *array_ptr_;
+  jsize size_;
+
+};  // class JNILongArrayAccess
 
 class JNIFloatArrayAccess {
   JNIFloatArrayAccess() = delete;

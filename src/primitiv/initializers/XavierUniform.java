@@ -11,6 +11,10 @@ public class XavierUniform extends Initializer
     handle_ = jniNew(scale);
   }
 
+  public XavierUniform() {
+    handle_ = jniNew(1.0f);
+  }
+
   private native long jniNew(float scale);
 
 }

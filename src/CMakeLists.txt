@@ -1,6 +1,7 @@
 set(primitiv_java_SRCS
   cpp/Device.cc
   cpp/devices/Naive.cc
+  cpp/functions.cc
   cpp/Initializer.cc
   cpp/initializers/Constant.cc
   cpp/initializers/Identity.cc
@@ -10,6 +11,13 @@ set(primitiv_java_SRCS
   cpp/initializers/XavierUniform.cc
   cpp/Graph.cc
   cpp/Node.cc
+  cpp/Optimizer.cc
+  cpp/optimizers/AdaDelta.cc
+  cpp/optimizers/AdaGrad.cc
+  cpp/optimizers/Adam.cc
+  cpp/optimizers/MomentumSGD.cc
+  cpp/optimizers/RMSProp.cc
+  cpp/optimizers/SGD.cc
   cpp/Parameter.cc
   cpp/Shape.cc
   cpp/Tensor.cc
@@ -18,6 +26,7 @@ set(primitiv_java_SRCS
 set(primitiv_java_JAVA_SRCS
   primitiv/Device.java
   primitiv/devices/Naive.java
+  primitiv/functions.java
   primitiv/Graph.java
   primitiv/Initializer.java
   primitiv/initializers/Constant.java
@@ -27,6 +36,13 @@ set(primitiv_java_JAVA_SRCS
   primitiv/initializers/XavierNormal.java
   primitiv/initializers/XavierUniform.java
   primitiv/Node.java
+  primitiv/Optimizer.java
+  primitiv/optimizers/AdaDelta.java
+  primitiv/optimizers/AdaGrad.java
+  primitiv/optimizers/Adam.java
+  primitiv/optimizers/MomentumSGD.java
+  primitiv/optimizers/RMSProp.java
+  primitiv/optimizers/SGD.java
   primitiv/Parameter.java
   primitiv/Shape.java
   primitiv/Tensor.java
@@ -36,6 +52,7 @@ set(primitiv_java_JAVA_SRCS
 set(primitiv_java_javah_CLASSLIST
   primitiv.Device
   primitiv.devices.Naive
+  primitiv.functions
   primitiv.Initializer
   primitiv.initializers.Constant
   primitiv.initializers.Identity
@@ -45,6 +62,13 @@ set(primitiv_java_javah_CLASSLIST
   primitiv.initializers.XavierUniform
   primitiv.Graph
   primitiv.Node
+  primitiv.Optimizer
+  primitiv.optimizers.AdaDelta
+  primitiv.optimizers.AdaGrad
+  primitiv.optimizers.Adam
+  primitiv.optimizers.MomentumSGD
+  primitiv.optimizers.RMSProp
+  primitiv.optimizers.SGD
   primitiv.Parameter
   primitiv.Shape
   primitiv.Tensor

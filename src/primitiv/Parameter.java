@@ -27,8 +27,18 @@ public class Parameter {
     del_required_ = true;
   }
 
+  public Parameter(Shape shape, float[] value) {
+    handle_ = jniNewWithValues(shape.handle_, value, 0);
+    del_required_ = true;
+  }
+
   public Parameter(Shape shape, Initializer initializer, Device device) {
     handle_ = jniNewWithInitializer(shape.handle_, initializer.handle_, device.handle_);
+    del_required_ = true;
+  }
+
+  public Parameter(Shape shape, Initializer initializer) {
+    handle_ = jniNewWithInitializer(shape.handle_, initializer.handle_, 0);
     del_required_ = true;
   }
 
