@@ -49,6 +49,7 @@ public class Parameter {
   public void dispose() {
     if (del_required_) {
       jniDelete(handle_);
+      del_required_ = false;
     }
   }
 
