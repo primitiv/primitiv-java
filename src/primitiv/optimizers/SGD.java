@@ -11,6 +11,10 @@ public class SGD extends Optimizer
     handle_ = jniNew(eta);
   }
 
+  public SGD() {
+    handle_ = jniNew(0.1f);
+  }
+
   public float eta() {
     return jniEta(handle_);
   }

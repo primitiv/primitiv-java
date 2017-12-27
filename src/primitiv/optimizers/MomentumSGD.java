@@ -11,6 +11,14 @@ public class MomentumSGD extends Optimizer
     handle_ = jniNew(eta, momentum);
   }
 
+  public MomentumSGD(float eta) {
+    handle_ = jniNew(eta, 0.9f);
+  }
+
+  public MomentumSGD() {
+    handle_ = jniNew(0.01f, 0.9f);
+  }
+
   public float eta() {
     return jniEta(handle_);
   }

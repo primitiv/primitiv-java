@@ -11,6 +11,18 @@ public class RMSProp extends Optimizer
     handle_ = jniNew(eta, alpha, eps);
   }
 
+  public RMSProp(float eta, float alpha) {
+    handle_ = jniNew(eta, alpha, 1e-8f);
+  }
+
+  public RMSProp(float eta) {
+    handle_ = jniNew(eta, 0.9f, 1e-8f);
+  }
+
+  public RMSProp() {
+    handle_ = jniNew(0.01f, 0.9f, 1e-8f);
+  }
+
   public float eta() {
     return jniEta(handle_);
   }

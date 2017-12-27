@@ -11,6 +11,22 @@ public class Adam extends Optimizer
     handle_ = jniNew(alpha, beta1, beta2, eps);
   }
 
+  public Adam(float alpha, float beta1, float beta2) {
+    handle_ = jniNew(alpha, beta1, beta2, 1e-8f);
+  }
+
+  public Adam(float alpha, float beta1) {
+    handle_ = jniNew(alpha, beta1, 0.999f, 1e-8f);
+  }
+
+  public Adam(float alpha) {
+    handle_ = jniNew(alpha, 0.9f, 0.999f, 1e-8f);
+  }
+
+  public Adam() {
+    handle_ = jniNew(0.001f, 0.9f, 0.999f, 1e-8f);
+  }
+
   public float alpha() {
     return jniAlpha(handle_);
   }

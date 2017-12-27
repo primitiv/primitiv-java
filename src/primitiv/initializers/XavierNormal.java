@@ -11,6 +11,10 @@ public class XavierNormal extends Initializer
     handle_ = jniNew(scale);
   }
 
+  public XavierNormal() {
+    handle_ = jniNew(1.0f);
+  }
+
   private native long jniNew(float scale);
 
 }

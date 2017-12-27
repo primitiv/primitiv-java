@@ -11,6 +11,14 @@ public class AdaDelta extends Optimizer
     handle_ = jniNew(rho, eps);
   }
 
+  public AdaDelta(float rho) {
+    handle_ = jniNew(rho, 1e-6f);
+  }
+
+  public AdaDelta() {
+    handle_ = jniNew(0.95f, 1e-6f);
+  }
+
   public float rho() {
     return jniRho(handle_);
   }

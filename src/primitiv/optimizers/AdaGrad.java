@@ -11,6 +11,14 @@ public class AdaGrad extends Optimizer
     handle_ = jniNew(eta, eps);
   }
 
+  public AdaGrad(float eta) {
+    handle_ = jniNew(eta, 1e-8f);
+  }
+
+  public AdaGrad() {
+    handle_ = jniNew(0.001f, 1e-8f);
+  }
+
   public float eta() {
     return jniEta(handle_);
   }
