@@ -112,17 +112,17 @@ public class Tensor
 //     return new Tensor(jniFlatten(handle_), true);
 //   }
 
-  public void inplace_multiply_const(float k) {
-    jniInplaceMultiplyConst(handle_, k);
-  }
-
-  public void inplace_add(Tensor x) {
-    jniInplaceAdd(handle_, x.handle_);
-  }
-
-  public void inplace_subtract(Tensor x) {
-    jniInplaceSubtract(handle_, x.handle_);
-  }
+//   public void inplace_multiply_const(float k) {
+//     jniInplaceMultiplyConst(handle_, k);
+//   }
+//
+//   public void inplace_add(Tensor x) {
+//     jniInplaceAdd(handle_, x.handle_);
+//   }
+//
+//   public void inplace_subtract(Tensor x) {
+//     jniInplaceSubtract(handle_, x.handle_);
+//   }
 
   private native long jniNew();
   private native long jniNewFromTensor(long handle);
