@@ -2,6 +2,9 @@
 
 package primitiv;
 
+import java.util.List;
+
+
 public class Tensor
 {
   private static HandleObjectHashMap<Tensor> handle_object_hashmap = new HandleObjectHashMap<Tensor>();
@@ -92,6 +95,14 @@ public class Tensor
 
   public void reset_by_array(float[] values) {
     jniResetByArray(handle_, values);
+  }
+
+  public void reset_by_array(List<Number> values) {
+    float[] value_arr = new float[values.size()];
+    for (int i = 0; i < value_arr.length; ++i) {
+      value_arr[i] = values.get(i).floatValue();
+    }
+    jniResetByArray(handle_, value_arr);
   }
 
   public Tensor reshape(Shape new_shape) {

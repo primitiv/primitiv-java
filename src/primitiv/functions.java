@@ -3,6 +3,7 @@
 package primitiv;
 
 import java.util.List;
+import java.util.Arrays;
 
 
 public final class functions {
@@ -133,15 +134,22 @@ public final class functions {
     return new Node(jniPick(x.handle_, ids, dim));
   }
 
+  public static Node pick(Node x, List<Number> ids, int dim) {
+    int[] ids_arr = ids.stream().mapToInt(i -> i.intValue()).toArray();
+    return new Node(jniPick(x.handle_, ids_arr, dim));
+  }
+
   public static Node slice(Node x, int dim, int lower, int upper) {
     return new Node(jniSlice(x.handle_, dim, lower, upper));
   }
 
   public static Node concat(Node[] xs, int dim) {
-    long[] x_ptrs = new long[xs.length];
-    for (int i = 0; i < xs.length; ++i) {
-      x_ptrs[i] = xs[i].handle_;
-    }
+    long[] x_ptrs = Arrays.asList(xs).stream().mapToLong(x -> x.handle_).toArray();
+    return new Node(jniConcat(x_ptrs, dim));
+  }
+
+  public static Node concat(List<Node> xs, int dim) {
+    long[] x_ptrs = xs.stream().mapToLong(x -> x.handle_).toArray();
     return new Node(jniConcat(x_ptrs, dim));
   }
 
@@ -239,6 +247,11 @@ public final class functions {
 
   public static Node softmax_cross_entropy(Node x, int[] ids, int dim) {
     return new Node(jniSoftmaxCrossEntropyWithArray(x.handle_, ids, dim));
+  }
+
+  public static Node softmax_cross_entropy(Node x, List<Integer> ids, int dim) {
+    int[] ids_arr = ids.stream().mapToInt(i -> i.intValue()).toArray();
+    return new Node(jniSoftmaxCrossEntropyWithArray(x.handle_, ids_arr, dim));
   }
 
   public static Node stop_gradient(Node x) {
@@ -355,10 +368,12 @@ public final class functions {
   }
 
   public static Node sum(Node[] xs) {
-    long[] x_ptrs = new long[xs.length];
-    for (int i = 0; i < xs.length; ++i) {
-      x_ptrs[i] = xs[i].handle_;
-    }
+    long[] x_ptrs = Arrays.asList(xs).stream().mapToLong(x -> x.handle_).toArray();
+    return new Node(jniSumNodes(x_ptrs));
+  }
+
+  public static Node sum(List<Node> xs) {
+    long[] x_ptrs = xs.stream().mapToLong(x -> x.handle_).toArray();
     return new Node(jniSumNodes(x_ptrs));
   }
 
@@ -367,10 +382,12 @@ public final class functions {
   }
 
   public static Node mean(Node[] xs) {
-    long[] x_ptrs = new long[xs.length];
-    for (int i = 0; i < xs.length; ++i) {
-      x_ptrs[i] = xs[i].handle_;
-    }
+    long[] x_ptrs = Arrays.asList(xs).stream().mapToLong(x -> x.handle_).toArray();
+    return new Node(jniMeanNodes(x_ptrs));
+  }
+
+  public static Node mean(List<Node> xs) {
+    long[] x_ptrs = xs.stream().mapToLong(x -> x.handle_).toArray();
     return new Node(jniMeanNodes(x_ptrs));
   }
 

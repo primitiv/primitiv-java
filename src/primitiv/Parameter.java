@@ -2,6 +2,9 @@
 
 package primitiv;
 
+import java.util.List;
+
+
 public class Parameter {
   private static HandleObjectHashMap<Parameter> handle_object_hashmap = new HandleObjectHashMap<Parameter>();
 
@@ -27,8 +30,26 @@ public class Parameter {
     del_required_ = true;
   }
 
+  public Parameter(Shape shape, List<Number> value, Device device) {
+    float[] value_arr = new float[value.size()];
+    for (int i = 0; i < value_arr.length; ++i) {
+      value_arr[i] = value.get(i).floatValue();
+    }
+    handle_ = jniNewWithValues(shape.handle_, value_arr, device.handle_);
+    del_required_ = true;
+  }
+
   public Parameter(Shape shape, float[] value) {
     handle_ = jniNewWithValues(shape.handle_, value, 0);
+    del_required_ = true;
+  }
+
+  public Parameter(Shape shape, List<Number> value) {
+    float[] value_arr = new float[value.size()];
+    for (int i = 0; i < value_arr.length; ++i) {
+      value_arr[i] = value.get(i).floatValue();
+    }
+    handle_ = jniNewWithValues(shape.handle_, value_arr, 0);
     del_required_ = true;
   }
 
@@ -64,6 +85,14 @@ public class Parameter {
 
   public void init(Shape shape, float[] value, Device device) {
     jniInitWithValues(handle_, shape.handle_, value, device.handle_);
+  }
+
+  public void init(Shape shape, List<Number> value, Device device) {
+    float[] value_arr = new float[value.size()];
+    for (int i = 0; i < value_arr.length; ++i) {
+      value_arr[i] = value.get(i).floatValue();
+    }
+    jniInitWithValues(handle_, shape.handle_, value_arr, device.handle_);
   }
 
   public void init(Shape shape, Initializer initializer, Device device) {
