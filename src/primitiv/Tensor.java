@@ -23,43 +23,42 @@ public class Tensor
   }
 
   protected long handle_;
-  protected boolean del_required_;
+//   protected boolean del_required_;
 
   protected Tensor(long handle) {
     handle_ = handle;
   }
 
-  protected Tensor(long handle, boolean del_required) {
-    handle_ = handle;
-    del_required_ = del_required;
-  }
+//   protected Tensor(long handle, boolean del_required) {
+//     handle_ = handle;
+//     del_required_ = del_required;
+//   }
 
-  public Tensor() {
-    handle_ = jniNew();
-    register_wrapper(handle_, this);
-    del_required_ = true;
-  }
+//   public Tensor() {
+//     handle_ = jniNew();
+//     register_wrapper(handle_, this);
+//     del_required_ = true;
+//   }
+//
+//   public Tensor(Tensor tensor) {
+//     handle_ = jniNewFromTensor(tensor.handle_);
+//     del_required_ = true;
+//   }
 
-  public Tensor(Tensor tensor) {
-    handle_ = jniNewFromTensor(tensor.handle_);
-    del_required_ = true;
-  }
+//   public void dispose() {
+//     if (del_required_) {
+//       jniDelete(handle_);
+//     }
+//   }
 
-
-  public void dispose() {
-    if (del_required_) {
-      jniDelete(handle_);
-    }
-  }
-
-  @Override
-  protected void finalize() throws Throwable {
-    try {
-      super.finalize();
-    } finally {
-      dispose();
-    }
-  }
+//   @Override
+//   protected void finalize() throws Throwable {
+//     try {
+//       super.finalize();
+//     } finally {
+//       dispose();
+//     }
+//   }
 
   public boolean valid() {
     return jniValid(handle_);
@@ -105,13 +104,13 @@ public class Tensor
     jniResetByArray(handle_, value_arr);
   }
 
-  public Tensor reshape(Shape new_shape) {
-    return new Tensor(jniReshape(handle_, new_shape.handle_), true);
-  }
+//   public Tensor reshape(Shape new_shape) {
+//     return new Tensor(jniReshape(handle_, new_shape.handle_), true);
+//   }
 
-  public Tensor flatten() {
-    return new Tensor(jniFlatten(handle_), true);
-  }
+//   public Tensor flatten() {
+//     return new Tensor(jniFlatten(handle_), true);
+//   }
 
   public void inplace_multiply_const(float k) {
     jniInplaceMultiplyConst(handle_, k);
