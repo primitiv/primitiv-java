@@ -63,7 +63,7 @@ public class Graph
   }
 
   public Device getDevice(Node node) {
-    return Device.wrap_device(jniGetDevice(handle_, node.handle_));
+    return Device.wrapDevice(jniGetDevice(handle_, node.handle_));
   }
 
   public String dump(String format) {

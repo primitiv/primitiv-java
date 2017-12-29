@@ -8,7 +8,7 @@ public class OpenCL extends Device
 {
   public OpenCL(int platform_id, int device_id) {
     handle_ = jniNew(platform_id, device_id);
-    Device.register_wrapper(handle_, this);
+    Device.registerWrapper(handle_, this);
   }
 
   protected OpenCL(long handle) {

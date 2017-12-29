@@ -8,7 +8,7 @@ public class Eigen extends Device
 {
   public Eigen() {
     handle_ = jniNew();
-    Device.register_wrapper(handle_, this);
+    Device.registerWrapper(handle_, this);
   }
 
   protected Eigen(long handle) {

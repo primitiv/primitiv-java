@@ -128,19 +128,19 @@ public class Parameter {
   }
 
   public Device device() {
-    return Device.wrap_device(jniDevice(handle_));
+    return Device.wrapDevice(jniDevice(handle_));
   }
 
   public Tensor value() {
-    return Tensor.wrap_tensor(jniValue(handle_));
+    return Tensor.wrapTensor(jniValue(handle_));
   }
 
   public Tensor gradient() {
-    return Tensor.wrap_tensor(jniGradient(handle_));
+    return Tensor.wrapTensor(jniGradient(handle_));
   }
 
   public Tensor stats(String name) {
-    return Tensor.wrap_tensor(jniStats(handle_, name));
+    return Tensor.wrapTensor(jniStats(handle_, name));
   }
 
   private native long jniNew();

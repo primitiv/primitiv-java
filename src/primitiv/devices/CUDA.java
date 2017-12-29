@@ -8,7 +8,7 @@ public class CUDA extends Device
 {
   public CUDA(int device_id) {
     handle_ = jniNew(device_id);
-    Device.register_wrapper(handle_, this);
+    Device.registerWrapper(handle_, this);
   }
 
   protected CUDA(long handle) {

@@ -35,7 +35,7 @@ public class Node
   }
 
   public Graph graph() {
-    return Graph.wrap_graph(jniGraph(handle_));
+    return Graph.wrapGraph(jniGraph(handle_));
   }
 
   public int operatorId() {
@@ -51,7 +51,7 @@ public class Node
   }
 
   public Device device() {
-    return Device.wrap_device(jniDevice(handle_));
+    return Device.wrapDevice(jniDevice(handle_));
   }
 
   public float to_float() {

@@ -69,7 +69,7 @@ public class Tensor
   }
 
   public Device device() {
-    return Device.wrap_device(jniDevice(handle_));
+    return Device.wrapDevice(jniDevice(handle_));
   }
 
   public float toFloat() {
