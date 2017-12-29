@@ -3,6 +3,10 @@ cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)
 project(jprimitiv VERSION 0.4.0 LANGUAGES Java CXX)
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
+option(PRIMITIV_USE_EIGEN "Enables the Eigen backend." OFF)
+option(PRIMITIV_USE_CUDA "Enables the CUDA backend." OFF)
+option(PRIMITIV_USE_OPENCL "Enables the OpenCL backend." OFF)
+
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 

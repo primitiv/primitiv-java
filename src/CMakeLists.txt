@@ -74,6 +74,24 @@ set(primitiv_java_javah_CLASSLIST
   primitiv.Tensor
 )
 
+if(PRIMITIV_USE_CUDA)
+  list(APPEND primitiv_java_SRCS cpp/devices/CUDA.cc)
+  list(APPEND primitiv_java_JAVA_SRCS primitiv/devices/CUDA.java)
+  list(APPEND primitiv_java_javah_CLASSLIST primitiv.devices.CUDA)
+endif()
+
+if(PRIMITIV_USE_EIGEN)
+  list(APPEND primitiv_java_SRCS cpp/devices/Eigen.cc)
+  list(APPEND primitiv_java_JAVA_SRCS primitiv/devices/Eigen.java)
+  list(APPEND primitiv_java_javah_CLASSLIST primitiv.devices.Eigen)
+endif()
+
+if(PRIMITIV_USE_OPENCL)
+  list(APPEND primitiv_java_SRCS cpp/devices/OpenCL.cc)
+  list(APPEND primitiv_java_JAVA_SRCS primitiv/devices/OpenCL.java)
+  list(APPEND primitiv_java_javah_CLASSLIST primitiv.devices.OpenCL)
+endif()
+
 set(CMAKE_JNI_TARGET TRUE)
 add_jar(primitiv_java_JAR
   ${primitiv_java_JAVA_SRCS}
