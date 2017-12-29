@@ -233,7 +233,7 @@ public final class functions {
     return new Node(jniLogsumexp(x.handle_, dim));
   }
 
-  public static Node log_softmax(Node x, int dim) {
+  public static Node logSoftmax(Node x, int dim) {
     return new Node(jniLogSoftmax(x.handle_, dim));
   }
 
@@ -241,20 +241,20 @@ public final class functions {
     return new Node(jniSoftmax(x.handle_, dim));
   }
 
-  public static Node softmax_cross_entropy(Node x, Node t, int dim) {
+  public static Node softmaxCrossEntropy(Node x, Node t, int dim) {
     return new Node(jniSoftmaxCrossEntropy(x.handle_, t.handle_, dim));
   }
 
-  public static Node softmax_cross_entropy(Node x, int[] ids, int dim) {
+  public static Node softmaxCrossEntropy(Node x, int[] ids, int dim) {
     return new Node(jniSoftmaxCrossEntropyWithArray(x.handle_, ids, dim));
   }
 
-  public static Node softmax_cross_entropy(Node x, List<Integer> ids, int dim) {
+  public static Node softmaxCrossEntropy(Node x, List<Integer> ids, int dim) {
     int[] ids_arr = ids.stream().mapToInt(i -> i.intValue()).toArray();
     return new Node(jniSoftmaxCrossEntropyWithArray(x.handle_, ids_arr, dim));
   }
 
-  public static Node stop_gradient(Node x) {
+  public static Node stopGradient(Node x) {
     return new Node(jniStopGradient(x.handle_));
   }
 
@@ -334,15 +334,15 @@ public final class functions {
       return new Node(jniRandomNormal(shape.handle_, mean, sd, 0, 0));
     }
 
-    public static Node log_normal(Shape shape, float mean, float sd, Device dev, Graph g) {
+    public static Node logNormal(Shape shape, float mean, float sd, Device dev, Graph g) {
       return new Node(jniRandomLogNormal(shape.handle_, mean, sd, dev.handle_, g.handle_));
     }
 
-    public static Node log_normal(Shape shape, float mean, float sd, Device dev) {
+    public static Node logNormal(Shape shape, float mean, float sd, Device dev) {
       return new Node(jniRandomLogNormal(shape.handle_, mean, sd, dev.handle_, 0));
     }
 
-    public static Node log_normal(Shape shape, float mean, float sd) {
+    public static Node logNormal(Shape shape, float mean, float sd) {
       return new Node(jniRandomLogNormal(shape.handle_, mean, sd, 0, 0));
     }
 

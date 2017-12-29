@@ -33,35 +33,35 @@ public abstract class Optimizer {
     jniSave(handle_, path);
   }
 
-  public int get_epoch() {
+  public int getEpoch() {
     return jniGetEpoch(handle_);
   }
 
-  public void set_epoch(int epoch) {
+  public void setEpoch(int epoch) {
     jniSetEpoch(handle_, epoch);
   }
 
-  public float get_learning_rate_scaling() {
+  public float getLearningRateScaling() {
     return jniGetLearningRateScaling(handle_);
   }
 
-  public void set_learning_rate_scaling(float scale) {
+  public void setLearningRateScaling(float scale) {
     jniSetLearningRateScaling(handle_, scale);
   }
 
-  public float get_weight_decay() {
+  public float getWeightDecay() {
     return jniGetWeightDecay(handle_);
   }
 
-  public void set_weight_decay(float strength) {
+  public void setWeightDecay(float strength) {
     jniSetWeightDecay(handle_, strength);
   }
 
-  public float get_gradient_clipping() {
+  public float getGradientClipping() {
     return jniGetGradientClipping(handle_);
   }
 
-  public void set_gradient_clipping(float threshold) {
+  public void setGradientClipping(float threshold) {
     jniSetGradientClipping(handle_, threshold);
   }
 
@@ -79,7 +79,7 @@ public abstract class Optimizer {
     }
   }
 
-  public void reset_gradients() {
+  public void resetGradients() {
     jniResetGradients(handle_);
   }
 

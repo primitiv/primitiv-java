@@ -8,7 +8,7 @@ import java.util.List;
 public class Parameter {
   private static HandleObjectHashMap<Parameter> handle_object_hashmap = new HandleObjectHashMap<Parameter>();
 
-  protected static Parameter wrap_parameter(long handle) {
+  protected static Parameter wrapParameter(long handle) {
     if (handle_object_hashmap.containsKey(new Long(handle))) {
       return handle_object_hashmap.get(handle);
     }
@@ -111,15 +111,15 @@ public class Parameter {
     return jniValid(handle_);
   }
 
-  public void reset_gradients() {
+  public void resetGradients() {
     jniResetGradients(handle_);
   }
 
-  public void add_stats(String name, Shape shape) {
+  public void addStats(String name, Shape shape) {
     jniAddStats(handle_, name, shape.handle_);
   }
 
-  public boolean has_stats(String name) {
+  public boolean hasStats(String name) {
     return jniHasStats(handle_, name);
   }
 

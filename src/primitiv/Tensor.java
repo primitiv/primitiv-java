@@ -9,7 +9,7 @@ public class Tensor
 {
   private static HandleObjectHashMap<Tensor> handle_object_hashmap = new HandleObjectHashMap<Tensor>();
 
-  protected static Tensor wrap_tensor(long handle) {
+  protected static Tensor wrapTensor(long handle) {
     if (handle_object_hashmap.containsKey(new Long(handle))) {
       return handle_object_hashmap.get(handle);
     }
@@ -18,7 +18,7 @@ public class Tensor
     return result;
   }
 
-  protected static void register_wrapper(long handle, Tensor wrapper) {
+  protected static void registerWrapper(long handle, Tensor wrapper) {
     handle_object_hashmap.put(new Long(handle), wrapper);
   }
 
@@ -72,11 +72,11 @@ public class Tensor
     return Device.wrap_device(jniDevice(handle_));
   }
 
-  public float to_float() {
+  public float toFloat() {
     return jniToFloat(handle_);
   }
 
-  public float[] to_array() {
+  public float[] toArray() {
     return jniToArray(handle_);
   }
 
@@ -92,11 +92,11 @@ public class Tensor
     jniReset(handle_, k);
   }
 
-  public void reset_by_array(float[] values) {
+  public void resetByArray(float[] values) {
     jniResetByArray(handle_, values);
   }
 
-  public void reset_by_array(List<Number> values) {
+  public void resetByArray(List<Number> values) {
     float[] value_arr = new float[values.size()];
     for (int i = 0; i < value_arr.length; ++i) {
       value_arr[i] = values.get(i).floatValue();
@@ -112,15 +112,15 @@ public class Tensor
 //     return new Tensor(jniFlatten(handle_), true);
 //   }
 
-//   public void inplace_multiply_const(float k) {
+//   public void inplaceMultiplyConst(float k) {
 //     jniInplaceMultiplyConst(handle_, k);
 //   }
 //
-//   public void inplace_add(Tensor x) {
+//   public void inplaceAdd(Tensor x) {
 //     jniInplaceAdd(handle_, x.handle_);
 //   }
 //
-//   public void inplace_subtract(Tensor x) {
+//   public void inplaceSubtract(Tensor x) {
 //     jniInplaceSubtract(handle_, x.handle_);
 //   }
 

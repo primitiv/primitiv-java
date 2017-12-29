@@ -6,7 +6,7 @@ public class Device
 {
   private static HandleObjectHashMap<Device> handle_object_hashmap = new HandleObjectHashMap<Device>();
 
-  protected static Device wrap_device(long handle) {
+  protected static Device wrapDevice(long handle) {
     if (handle_object_hashmap.containsKey(new Long(handle))) {
       return handle_object_hashmap.get(handle);
     }
@@ -15,11 +15,11 @@ public class Device
     return result;
   }
 
-  protected static void register_wrapper(long handle, Device wrapper) {
+  protected static void registerWrapper(long handle, Device wrapper) {
     handle_object_hashmap.put(new Long(handle), wrapper);
   }
 
-  public static void set_default(Device device) {
+  public static void setDefault(Device device) {
     jniSetDefault(device.handle_);
   }
 

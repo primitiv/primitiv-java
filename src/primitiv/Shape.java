@@ -68,7 +68,7 @@ public class Shape
     return jniVolume(handle_);
   }
 
-  public int lower_volume(int dim) {
+  public int lowerVolume(int dim) {
     return jniLowerVolume(handle_, dim);
   }
 
@@ -76,7 +76,7 @@ public class Shape
     return jniSize(handle_);
   }
 
-  public String to_string() {
+  public String toString() {
     return jniToString(handle_);
   }
 
@@ -84,47 +84,47 @@ public class Shape
     return jniEqual(handle_, rhs.handle_);
   }
 
-  public boolean has_batch() {
+  public boolean hasBatch() {
     return jniHasBatch(handle_);
   }
 
-  public boolean has_compatible_batch(Shape rhs) {
+  public boolean hasCompatibleBatch(Shape rhs) {
     return jniHasCompatibleBatch(handle_, rhs.handle_);
   }
 
-  public boolean is_scalar() {
+  public boolean isScalar() {
     return jniIsScalar(handle_);
   }
 
-  public boolean is_row_vector() {
+  public boolean isRowVector() {
     return jniIsRowVector(handle_);
   }
 
-  public boolean is_matrix() {
+  public boolean isMatrix() {
     return jniIsMatrix(handle_);
   }
 
-  public boolean has_same_dims(Shape rhs) {
+  public boolean hasSameDims(Shape rhs) {
     return jniHasSameDims(handle_, rhs.handle_);
   }
 
-  public boolean has_same_loo_dims(Shape rhs, int dim) {
+  public boolean hasSameLooDims(Shape rhs, int dim) {
     return jniHasSameLooDims(handle_, rhs.handle_, dim);
   }
 
-  public Shape resize_dim(int dim, int m) {
+  public Shape resizeDim(int dim, int m) {
     return new Shape(jniResizeDim(handle_, dim, m));
   }
 
-  public Shape resize_batch(int batch) {
+  public Shape resizeBatch(int batch) {
     return new Shape(jniResizeBatch(handle_, batch));
   }
 
-  public void update_dim(int dim, int m) {
+  public void updateDim(int dim, int m) {
     jniUpdateDim(handle_, dim, m);
   }
 
-  public void update_batch(int batch) {
+  public void updateBatch(int batch) {
     jniUpdateBatch(handle_, batch);
   }
 

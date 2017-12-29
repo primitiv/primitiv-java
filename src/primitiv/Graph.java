@@ -6,7 +6,7 @@ public class Graph
 {
   private static HandleObjectHashMap<Graph> handle_object_hashmap = new HandleObjectHashMap<Graph>();
 
-  protected static Graph wrap_graph(long handle) {
+  protected static Graph wrapGraph(long handle) {
     if (handle_object_hashmap.containsKey(new Long(handle))) {
       return handle_object_hashmap.get(handle);
     }
@@ -15,11 +15,11 @@ public class Graph
     return result;
   }
 
-  protected static void register_wrapper(long handle, Graph wrapper) {
+  protected static void registerWrapper(long handle, Graph wrapper) {
     handle_object_hashmap.put(new Long(handle), wrapper);
   }
 
-  public static void set_default(Graph graph) {
+  public static void setDefault(Graph graph) {
     jniSetDefault(graph.handle_);
   }
 
@@ -58,11 +58,11 @@ public class Graph
     jniBackward(handle_, node.handle_);
   }
 
-  public Shape get_shape(Node node) {
+  public Shape getShape(Node node) {
     return new Shape(jniGetShape(handle_, node.handle_));
   }
 
-  public Device get_device(Node node) {
+  public Device getDevice(Node node) {
     return Device.wrap_device(jniGetDevice(handle_, node.handle_));
   }
 
@@ -70,7 +70,7 @@ public class Graph
     return jniDump(handle_, format);
   }
 
-  public int num_operators() {
+  public int numOperators() {
     return jniNumOperators(handle_);
   }
 

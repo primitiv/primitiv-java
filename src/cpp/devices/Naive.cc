@@ -1,6 +1,6 @@
 /* Copyright 2017 The primitiv Authors. All Rights Reserved. */
 
-#include "primitiv_Device.h"
+#include "primitiv_devices_Naive.h"
 
 #include <primitiv/primitiv.h>
 

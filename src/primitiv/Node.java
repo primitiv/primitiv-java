@@ -38,11 +38,11 @@ public class Node
     return Graph.wrap_graph(jniGraph(handle_));
   }
 
-  public int operator_id() {
+  public int operatorId() {
     return jniOperatorId(handle_);
   }
 
-  public int value_id() {
+  public int valueId() {
     return jniValueId(handle_);
   }
 
@@ -58,7 +58,7 @@ public class Node
     return jniToFloat(handle_);
   }
 
-  public float[] to_array() {
+  public float[] toArray() {
     return jniToArray(handle_);
   }
 
