@@ -90,8 +90,8 @@ JNIEXPORT jboolean JNICALL Java_primitiv_Shape_jniIsScalar(JNIEnv *env, jobject 
   return static_cast<jboolean>(to_object<Shape>(shape).is_scalar());
 }
 
-JNIEXPORT jboolean JNICALL Java_primitiv_Shape_jniIsRowVector(JNIEnv *env, jobject thisj, jlong shape) {
-  return static_cast<jboolean>(to_object<Shape>(shape).is_row_vector());
+JNIEXPORT jboolean JNICALL Java_primitiv_Shape_jniIsColumnVector(JNIEnv *env, jobject thisj, jlong shape) {
+  return static_cast<jboolean>(to_object<Shape>(shape).is_column_vector());
 }
 
 JNIEXPORT jboolean JNICALL Java_primitiv_Shape_jniIsMatrix(JNIEnv *env, jobject thisj, jlong shape) {

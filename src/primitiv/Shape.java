@@ -96,8 +96,8 @@ public class Shape
     return jniIsScalar(handle_);
   }
 
-  public boolean isRowVector() {
-    return jniIsRowVector(handle_);
+  public boolean isColumnVector() {
+    return jniIsColumnVector(handle_);
   }
 
   public boolean isMatrix() {
@@ -144,7 +144,7 @@ public class Shape
   private native boolean jniHasBatch(long shape);
   private native boolean jniHasCompatibleBatch(long shape, long rhs);
   private native boolean jniIsScalar(long shape);
-  private native boolean jniIsRowVector(long shape);
+  private native boolean jniIsColumnVector(long shape);
   private native boolean jniIsMatrix(long shape);
   private native boolean jniHasSameDims(long shape, long rhs);
   private native boolean jniHasSameLooDims(long shape, long rhs, int dim);
