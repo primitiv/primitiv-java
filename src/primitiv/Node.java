@@ -2,7 +2,10 @@
 
 package primitiv;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
 public class Node
@@ -62,12 +65,17 @@ public class Node
     return jniToArray(handle_);
   }
 
-  public int[] argmax(int dim) {
-    return jniArgmax(handle_, dim);
+  public List<Double> toList() {
+    float[] val = jniToArray(handle_);
+    return IntStream.range(0, val.length).mapToDouble(i -> val[i]).boxed().collect(Collectors.toList());
   }
 
-  public int[] argmin(int dim) {
-    return jniArgmin(handle_, dim);
+  public List<Integer> argmax(int dim) {
+    return Arrays.stream(jniArgmax(handle_, dim)).boxed().collect(Collectors.toList());
+  }
+
+  public List<Integer> argmin(int dim) {
+    return Arrays.stream(jniArgmin(handle_, dim)).boxed().collect(Collectors.toList());
   }
 
   public void backward() {

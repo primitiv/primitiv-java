@@ -2,7 +2,9 @@
 
 package primitiv;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class Shape
@@ -52,8 +54,8 @@ public class Shape
     return jniGetitem(handle_, i);
   }
 
-  public int[] dims() {
-    return jniDims(handle_);
+  public List<Integer> dims() {
+    return Arrays.stream(jniDims(handle_)).boxed().collect(Collectors.toList());
   }
 
   public int depth() {
