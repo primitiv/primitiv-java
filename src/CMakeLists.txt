@@ -10,6 +10,7 @@ set(primitiv_java_SRCS
   cpp/initializers/XavierNormal.cc
   cpp/initializers/XavierUniform.cc
   cpp/Graph.cc
+  cpp/Model.cc
   cpp/Node.cc
   cpp/Optimizer.cc
   cpp/optimizers/AdaDelta.cc
@@ -35,6 +36,7 @@ set(primitiv_java_JAVA_SRCS
   primitiv/initializers/Uniform.java
   primitiv/initializers/XavierNormal.java
   primitiv/initializers/XavierUniform.java
+  primitiv/Model.java
   primitiv/Node.java
   primitiv/Optimizer.java
   primitiv/optimizers/AdaDelta.java
@@ -61,6 +63,7 @@ set(primitiv_java_javah_CLASSLIST
   primitiv.initializers.XavierNormal
   primitiv.initializers.XavierUniform
   primitiv.Graph
+  primitiv.Model
   primitiv.Node
   primitiv.Optimizer
   primitiv.optimizers.AdaDelta

@@ -9,20 +9,6 @@ namespace primitiv {
 
 namespace jni {
 
-inline jlong to_jlong(void *instance) {
-  return reinterpret_cast<jlong>(instance);
-}
-
-template<class T>
-inline T *to_object_ptr(jlong pointer) {
-  return reinterpret_cast<T *>(pointer);
-}
-
-template<class T>
-inline T &to_object(jlong pointer) {
-  return *reinterpret_cast<T *>(pointer);
-}
-
 class JNIIntArrayAccess {
   JNIIntArrayAccess() = delete;
 
@@ -152,6 +138,42 @@ private:
   jsize size_;
 
 };  // class JNIStringAccess
+
+inline jlong to_jlong(void *instance) {
+  return reinterpret_cast<jlong>(instance);
+}
+
+template<class T>
+inline T *to_object_ptr(jlong pointer) {
+  return reinterpret_cast<T *>(pointer);
+}
+
+template<class T>
+inline T &to_object(jlong pointer) {
+  return *reinterpret_cast<T *>(pointer);
+}
+
+inline std::vector<std::string> to_string_vector(JNIEnv *env, jobjectArray array) {
+  std::vector<std::string> str_vec;
+  jsize array_len = env->GetArrayLength(array);
+  for (jsize i = 0; i < array_len; ++i) {
+    jstring s = static_cast<jstring>(env->GetObjectArrayElement(array, i));
+    JNIStringAccess str_access(env, s);
+    str_vec.emplace_back(str_access.get_string());
+  }
+  return str_vec;
+}
+
+inline jobjectArray to_jstring_array(JNIEnv *env, std::vector<std::string> str_vec) {
+  size_t vec_size = str_vec.size();
+  jobjectArray array = env->NewObjectArray(vec_size, env->FindClass("java/lang/String"), 0);
+  for(size_t i = 0; i < vec_size; ++i)
+  {
+    jstring str = env->NewStringUTF(str_vec.at(i).c_str());
+    env->SetObjectArrayElement(array, i, str);
+  }
+  return array;
+}
 
 }  // namespace jni
 
