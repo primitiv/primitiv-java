@@ -54,7 +54,7 @@ public class Node
     return Device.wrapDevice(jniDevice(handle_));
   }
 
-  public float to_float() {
+  public float toFloat() {
     return jniToFloat(handle_);
   }
 

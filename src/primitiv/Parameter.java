@@ -17,17 +17,23 @@ public class Parameter {
     return result;
   }
 
+  protected static void registerWrapper(long handle, Parameter wrapper) {
+    handle_object_hashmap.put(new Long(handle), wrapper);
+  }
+
   protected long handle_;
   private boolean del_required_;
 
   public Parameter() {
     handle_ = jniNew();
     del_required_ = true;
+    registerWrapper(handle_, this);
   }
 
   public Parameter(Shape shape, float[] value, Device device) {
     handle_ = jniNewWithValues(shape.handle_, value, device.handle_);
     del_required_ = true;
+    registerWrapper(handle_, this);
   }
 
   public Parameter(Shape shape, List<Number> value, Device device) {
@@ -37,11 +43,13 @@ public class Parameter {
     }
     handle_ = jniNewWithValues(shape.handle_, value_arr, device.handle_);
     del_required_ = true;
+    registerWrapper(handle_, this);
   }
 
   public Parameter(Shape shape, float[] value) {
     handle_ = jniNewWithValues(shape.handle_, value, 0);
     del_required_ = true;
+    registerWrapper(handle_, this);
   }
 
   public Parameter(Shape shape, List<Number> value) {
@@ -51,16 +59,19 @@ public class Parameter {
     }
     handle_ = jniNewWithValues(shape.handle_, value_arr, 0);
     del_required_ = true;
+    registerWrapper(handle_, this);
   }
 
   public Parameter(Shape shape, Initializer initializer, Device device) {
     handle_ = jniNewWithInitializer(shape.handle_, initializer.handle_, device.handle_);
     del_required_ = true;
+    registerWrapper(handle_, this);
   }
 
   public Parameter(Shape shape, Initializer initializer) {
     handle_ = jniNewWithInitializer(shape.handle_, initializer.handle_, 0);
     del_required_ = true;
+    registerWrapper(handle_, this);
   }
 
   protected Parameter(long handle) {
