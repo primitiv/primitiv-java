@@ -15,6 +15,21 @@ public class OpenCL extends Device
     handle_ = handle;
   }
 
+  public static int numPlatforms() {
+    return jniNumPlatforms();
+  }
+
+  public static int numDevices(int platform_id) {
+    return jniNumDevices(platform_id);
+  }
+
+  public static boolean checkSupport(int platform_id, int device_id) {
+    return jniCheckSupport(platform_id, device_id);
+  }
+
   private native long jniNew(int platform_id, int device_id);
+  private static native int jniNumPlatforms();
+  private static native int jniNumDevices(int platform_id);
+  private static native boolean jniCheckSupport(int platform_id, int device_id);
 
 }

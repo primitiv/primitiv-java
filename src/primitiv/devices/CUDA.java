@@ -15,6 +15,16 @@ public class CUDA extends Device
     handle_ = handle;
   }
 
+  public static int numDevices() {
+    return jniNumDevices();
+  }
+
+  public static boolean checkSupport(int device_id) {
+    return jniCheckSupport(device_id);
+  }
+
   private native long jniNew(int device_id);
+  private static native int jniNumDevices();
+  private static native boolean jniCheckSupport(int device_id);
 
 }
